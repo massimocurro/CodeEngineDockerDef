@@ -12,8 +12,6 @@
 set -ex
 export REGISTRY=${REGISTRY:-icr.io/codeengine}
 
-# Build the image
-docker build ${NOCACHE} -t ${REGISTRY}/ce-bash . --platform linux/amd64
-
-# And push it
-docker push ${REGISTRY}/ce-bash
+# First build the app's image and push it
+docker build ${NOCACHE} -t ${REGISTRY}/bind-job -f Dockerfile . --platform linux/amd64
+docker push ${REGISTRY}/bind-job
