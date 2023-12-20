@@ -1,13 +1,14 @@
-# Bind-Job
+# Job
 
-This sample shows how to bind an instance of an IBM Cloud managed service
-to a batch job. Under the covers this will query the service to get
-information such as the credentials to talk to it, and its location URL.
-Then it'll create a secret with that information and bind that secret to
-your job. Meaning, it'll make the secret name/value pairs visible as a
-set of environment variables.
+This sample shows up to run a batch job. It will create the batch job two ways:
+1 - first, it'll create a Job definition (the config information about a job)
+    and then it submits that Job to actually do the work.
+2 - second, it'll submit the Job directly without creating the definition
+    first. Both will generate the same results though.
 
-In this sample we'll create an instance of an Event Streams service.
+Each instance of each Job submitted will print, to its logs, its "index",
+which is defined by its `JOB_INDEX` environment variable. The `run` script
+will print some of the log files to show this.
 
 - - -
 
