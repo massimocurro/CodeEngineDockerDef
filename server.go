@@ -75,27 +75,8 @@ func main() {
 
 	// Our HTTP handler func
         http.Get("https://function-76.1at6rgz00yjr.eu-de.codeengine.appdomain.cloud")
-        exit(0)
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		Debug(1, "Request: %s -> %s", r.Method, r.URL)
-		envs := []string{
-			"METHOD=" + r.Method,
-			"URL=" + r.URL.Path,
-		}
-
-		for k, v := range r.Header {
-			k = strings.ReplaceAll(k, "-", "_")
-			k = strings.ToUpper(k)
-			envs = append(envs, fmt.Sprintf("HEADER_%s=%s", k, v))
-		}
-
-		body, _ := ioutil.ReadAll(r.Body)
-		code, result := Run(envs, body, Command)
-
-		if code != 0 {
-			w.WriteHeader(http.StatusInternalServerError)
-		}
-		fmt.Fprintf(w, result)
 	})
 
 	Debug(1, "Listening on port 8080")
